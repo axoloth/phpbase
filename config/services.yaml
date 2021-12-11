@@ -1,0 +1,53 @@
+parameters:
+    app.from_email: martin.gilbert@dev-fusion.com
+    app.developer_email: martin.gilbert@dev-fusion.com
+    app.recaptcha3.url: '%env(RECAPTCHA3_URL)%'
+    app.recaptcha3.secret: '%env(RECAPTCHA3_SECRET)%'
+    app.recaptcha3.site_key: '%env(RECAPTCHA3_SITE_KEY)%'
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+    App\EventListener\LocaleListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 20 }
+    # Notify developer when an error occurs
+    mailer_template_notify_error:
+        class: Symfony\Component\Mime\Email
+        calls:
+            - ['from', ['%app.from_email%']]
+            - ['to', ['%app.developer_email%']]
+            - ['subject', ['Critical error - %router.request_context.host%']]
+    monolog_mailer_handler:
+        class: Symfony\Bridge\Monolog\Handler\MailerHandler
+        arguments:
+            - '@mailer.mailer'
+            - '@mailer_template_notify_error'
+            - !php/const Monolog\Logger::DEBUG # log level
+            - true # bubble
+    
+    App\EventListener\GlobalDataListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 20 }
+    
+    App\EntityListener\ArticleEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Article'}
+            - { name: 'doctrine.orm.entity_listener', event: 'preUpdate', entity: 'App\Entity\Article'}
+    App\EntityListener\ArticleCategoryEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\ArticleCategory'}
+            - { name: 'doctrine.orm.entity_listener', event: 'preUpdate', entity: 'App\Entity\ArticleCategory'}

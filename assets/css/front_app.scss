@@ -1,0 +1,22 @@
+// assets/css/front_app.scss
+
+// font awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  #flash_message {
+    width: 100%;
+    max-width: 320px;
+    background-color: transparent;
+    position: absolute;
+    right: 15PX;
+    top: 150px;
+    z-index: 999;
+  }
+}

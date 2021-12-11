@@ -1,0 +1,46 @@
+{% trans_default_domain 'front_messages' %}
+{% extends "front/layout.html.twig" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block description %}{{ article.description }}{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="d-flex flex-column flex-sm-row justify-content-between">
+                {% if article.croppedImageName %}
+                    <div class="text-center"><img src="/upload/{{ article.croppedImageName }}" alt="{{ article.croppedImageAlt }}" class="img-fluid"></div><br>
+                {% endif %}
+                <div class="card mt-4 mb-4">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ article.title }}</h1>
+                        <div class="card-content">
+                            
+                            <ul class="list-unstyled">        
+                                <li class="p-2 mb-2">
+                                    <strong>{{ 'article.field.author'|trans() }} : </strong>{{ article.author }}                            
+                                </li>
+                                <li class="p-2 mb-2">
+                                    <strong>{{ 'article.field.created_at'|trans() }} : </strong>{{ article.createdAt ? article.createdAt|format_datetime : '' }}
+                                </li>
+                                <li class="p-2 mb-2">
+                                    <strong>{{ 'article.field.updated_at'|trans() }} : </strong>{{ article.updatedAt ? article.updatedAt|format_datetime : '' }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="text-justify">{{ article.content|raw }}</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}{{ 'config.read.title'|trans() }}{% endblock %}
+
+{% block content %}
+<section class="pt-4 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="h3">{{ 'config.read.h1'|trans({ '%identifier%': config }) }}</h1>
+            </div>
+            <div class="col-sm-6 text-right">
+                <p>
+                    <a href="{{ path('back_config_search') }}" class="btn bg-white text-primary button" role="button">
+                        <i class="fas fa-reply"></i> {{ 'button.back'|trans() }}
+                    </a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="card mt-4 mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ 'config.read.h2'|trans() }}</h2>
+                <div class="card-content">
+                    <ul class="list-unstyled">
+                        <li class="p-2 mb-2">
+                            <strong>{{ 'config.field.name'|trans() }} : </strong>{{ config.name }}                        </li>
+                        <li class="p-2 mb-2">
+                            <strong>{{ 'config.field.value'|trans() }} : </strong>{{ config.value }}                        </li>
+                    </ul>
+                </div>
+            </div>        
+        </div>
+    </div>
+</section>
+{% endblock %}

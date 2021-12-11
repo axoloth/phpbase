@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('front_app') }}
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block flash_message %}
+            {% include "block/_flash_message.html.twig" %}
+        {% endblock %}
+        <div id="wrapper">
+            <div id="content">
+                {% block navbar %}
+                    {% include "front/block/_navbar.html.twig" %}
+                {% endblock %}
+
+                {% block content %}
+                    {% block banner%}{% endblock %}
+                {% endblock %}
+
+                {% block footer %}
+                    {% include "front/block/_footer.html.twig" %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('front_app') }}
+        {% endblock %}
+    </body>
+{% endblock %}

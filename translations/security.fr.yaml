@@ -1,0 +1,98 @@
+reset_email:
+    title: Modifier votre email
+    h1: Modifier votre email
+    btn:
+        submit: Envoyer
+    flash:
+        check_email: |
+            Un e-mail a été envoyé sur votre nouvel adresse. Il contient un lien sur lequel il vous faudra cliquer pour confirmer votre nouvel email.
+            Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau.
+        success: L'adresse email a été modifié.
+    email:
+        subject: '🔔 Réinitialisation de votre email'
+        message: |
+            Bonjour %user%,
+            
+            Pour confirmer la modification de votre email, merci de cliquer sur le lien suivant.
+            
+            Si vous n'êtes pas à l'origine de cette demande, veuillez ne pas tenir compte de ce message.
+        action: Confirmer 
+    label:
+        email: Nouveau email
+        password: Mot de passe
+        repeat_email: Répéter le nouveau email
+forget_password:
+    title: Mot de passe oublié
+    h1: Mot de passe oublié
+    btn:
+        submit: Envoyer
+    flash:
+        check_email: |
+            Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+            Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau.
+    email:
+        subject: '🔔 Réinitialisation de votre mot de passe'
+        message: |
+            Bonjour %user%,
+            
+            Pour réinitialiser votre mot de passe, merci de cliquer sur le lien suivant.
+            
+            Ce lien ne peut être utilisé qu'une seule fois.
+            
+            Si vous n'êtes pas à l'origine de cette demande, veuillez ne pas tenir compte de ce message.
+        action: Réinitialiser    
+    label:
+        email: Email
+login:
+    title: S'identifier
+    h1: Veuillez vous connecter
+    link:
+        logout: Se déconnecter
+        forget_password: Mot de passe oublié ?
+        registration: Inscription
+    message:
+        welcome: Bienvenue %user%
+        logged_as: Vous êtes connecté en tant que %user%
+        email_not_found: Ce email n'a pas pu être trouvé.
+        not_activated: Ce compte n'est pas activé.
+    label:
+        email: Email
+        password: Mot de passe
+        remember_me: Se souvenir de moi
+    btn:
+        submit: Connexion
+registration:
+    title: Inscription
+    h1: Inscription
+    btn:
+        submit: Inscription
+    email:
+        subject: '🔔 Bienvenue %user%'
+        message: |
+            Bonjour %user%,
+
+            Pour valider votre compte utilisateur, merci de cliquer sur le lien suivant.
+
+            Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+        action: Valider
+    flash:
+        check_email: Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.
+        confirmed: Félicitations %user%, votre compte est maintenant activé.
+    label:
+        email: Email
+        firstname: Prénom
+        lastname: Nom
+        password: Mot de passe
+        repeat_password: Répéter le mot de passe
+        agree_terms: J'accepte les termes d'utilisation
+reset_password:
+    title: Réinitialiser le mot de passe
+    h1: Réinitialiser le mot de passe
+    btn:
+        submit: Réinitialiser
+    flash:
+        success: Le mot de passe a été modifié.
+    label:
+        current_password: Ancien mot de passe
+        new_password: Nouveau mot de passe
+        repeat_new_password: Répété le nouveau mot de passe

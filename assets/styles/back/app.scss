@@ -1,0 +1,37 @@
+// font awesome
+@import '../~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../~@fortawesome/fontawesome-free/scss/regular';
+@import '../~@fortawesome/fontawesome-free/scss/solid';
+@import '../~@fortawesome/fontawesome-free/scss/brands';
+
+// bootstrap
+@import "../~bootstrap/scss/bootstrap";
+
+
+$base-font-size: 14px;
+$default-color:rgba(41, 47, 54, 0.7);
+$default-color-hover:#2DC3F5;
+
+$break-large: 1200px;
+$break-medium: 992px;
+$break-small: 768px;
+
+
+@import '../_flash_message';
+@import '../_sidebar';
+
+body {
+    #wrapper {
+        display: flex;
+        position: relative;
+        left: 0;
+        transition: margin-left .3s ease-in-out;
+        align-items: stretch;
+        overflow: hidden;
+    }
+    
+    #content {
+        width: 100%;
+        min-height: 100vh;
+    }
+}

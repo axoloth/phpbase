@@ -1,0 +1,16 @@
+{% trans_default_domain 'back_messages' %}
+    
+<h{{ hn }}>{{ category }}</h{{ hn}}>
+{% set hn = hn + 1 %}
+{% for article in category.articles %}
+    {% if article.id != article_id %}
+        <h{{ hn }}>
+            <a href="{{ path('back_article_read', { 'id': article.id }) }}">
+                {{ article.title }}
+            </a>
+        </h{{ hn }}>
+    {% endif %}
+{% endfor %}
+{% for subcategory in category.subcategories %}
+    {% include 'back/article/_category.html.twig' with { 'article_id': article_id, 'category': subcategory, 'hn': hn } %}
+{% endfor %}

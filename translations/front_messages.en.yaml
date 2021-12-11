@@ -1,0 +1,46 @@
+article:
+    button:
+        more: More
+    field:
+        author: Author
+        created_at: 'Created At'
+        updated_at: 'Updated At'
+nav:
+    home: Home
+    lang: Language
+    lang_fr: French
+    lang_en: English
+    account: Account
+    account_back: Back-office
+    account_login: Login
+    account_logout: Logout
+    account_register: Registration
+    account_profile: My profile
+    account_reset_password: Reset password
+    account_reset_email: Reset email
+    contact_us: Contact us
+contact_message:
+    create:
+        flash:
+            success: Thank you, your message has been sent ! Thank you for taking the time to contact us via our form. Your message has been sent to our teams, we will get back to you as soon as possible.
+        h1: 'Contact us'
+        h2: 'Contact form'
+        title: 'Contact us'
+    email:
+        subject: '🔔 Notification - Message'
+        action: Click here to open it in the app
+        h1: You have been contacted by the form on your site
+    field:
+        email: Email
+        phone: Phone
+        firstname: Firstname
+        lastname: Lastname
+        message: Message
+        subject: Subject
+    label:
+        email: Email
+        phone: Phone
+        firstname: Firstname
+        lastname: Lastname
+        message: Message
+        subject: Subject

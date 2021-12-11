@@ -1,0 +1,46 @@
+article:
+    button:
+        more: Plus
+    field:
+        author: Auteur
+        created_at: Créé le
+        updated_at: Mis à jour le
+nav:
+    home: Accueil
+    lang: Langue
+    lang_fr: Français
+    lang_en: Anglais
+    account: Compte
+    account_back: Back-office
+    account_login: Connexion
+    account_logout: Déconnection
+    account_register: Inscription
+    account_profile: Mes informations
+    account_reset_password: Modifier le mot de passe
+    account_reset_email: Modifier le email
+    contact_us: Contacter nous
+contact_message:
+    create:
+        flash:
+            success: Merci, votre message a bien été envoyé ! Merci d'avoir pris le temps de nous contacter via notre formulaire. Votre message a bien été transmis à nos équipes, nous vous répondrons dans les plus brefs délais.
+        h1: 'Nous contacter'
+        h2: 'Formulaire contact'
+        title: 'Nous contacter'
+    email:
+        subject: '🔔 Notification - Message'
+        action: Cliquer ici pour l'ouvrir dans l'application
+        h1: Vous avez été contacté via le formulaire de votre site
+    field:
+        email: Email
+        phone: Téléphone
+        firstname: Prénom
+        lastname: Nom
+        message: Message
+        subject: Objet
+    label:
+        email: Email
+        phone: Téléphone
+        firstname: Prénom
+        lastname: Nom
+        message: Message
+        subject: Subject

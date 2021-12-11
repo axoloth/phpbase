@@ -1,0 +1,39 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}{{ 'config.update.title'|trans() }}{% endblock %}
+
+{% block content %}
+<section class="pt-4 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="h3">{{ 'config.update.h1'|trans() }}</h1>
+            </div>
+            <div class="col-sm-6 text-right">
+                <p>
+                    <a href="{{ path('back_config_search') }}" class="btn bg-white text-primary button" role="button">
+                        <i class="fas fa-reply"></i> {{ 'button.back'|trans() }}
+                    </a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="card mt-4 mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ 'config.update.h2'|trans() }}</h2>
+                <div class="card-content p-2 mb-4">
+                    {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.type) }}
+                        {{ form_row(form.value) }}
+                        <button class="btn bg-white text-primary btn-block button">
+                            <i class="far fa-paper-plane"></i> {{ 'button.submit'|trans() }}
+                        </button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

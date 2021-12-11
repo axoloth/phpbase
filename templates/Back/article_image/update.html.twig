@@ -1,0 +1,72 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}
+    {{ 'article_image.update.title'|trans() }}
+{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="h3">{{ 'article_image.update.h1'|trans() }}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>
+                        <a href="{{ path('back_article_read', { 'id': article.id }) }}" class="btn btn-info" role="button">
+                            <i class="fas fa-reply"></i>
+                            {{ 'button.back'|trans() }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ 'article_image.update.h2'|trans() }}</h2>
+                    <div class="p-4 border border-light">
+                        {{ form_start(form, { 'attr': { 'id': 'form_file' }}) }}
+                        {{ form_row(form.file) }}
+                        <div id="file_upload_filename"></div>
+                        <div id="spinner" class="d-flex justify-content-center invisible">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-info btn-block invisible">
+                            <i class="far fa-paper-plane"></i>
+                            {{ 'button.submit'|trans() }}
+                        </button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var form = document.getElementById( 'form_file' );
+        var input = document.getElementById( '{{ form.file.vars.id }}' );
+        
+        var infoArea = document.getElementById( 'file_upload_filename' );
+        input.addEventListener( 'change', showFileName );
+        
+        function showFileName( event ) {
+            $('#spinner').removeClass('invisible');
+            var input = event.srcElement;
+
+            // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+            var fileName = input.files[ 0 ].name;
+
+            // use fileName however fits your app best, i.e. add it into a div
+            infoArea.textContent = 'File name: ' + fileName;
+
+            // Submit form
+            form.submit();
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front_messages' %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% for category in categories %}
+        <h2><span>{{ category.name }}</span></h2>
+        {% for article in category.articles %}
+            <div class="media d-flex flex-column flex-sm-row">
+                {% if article.croppedImageThumbnailName %}
+                    <img class="align-self-start mr-3 mb-5" src="{{ article.croppedImageThumbnailName }}" alt="{{ article.croppedImageThumbnailAlt }}">
+                {% endif %}
+                <div class="media-body">
+                    <h3>{{ article.title }}</h3>
+                    <div class="text-justify">{{ article.description|nl2br }}</div>
+                    <p class="mb-0">
+                        <a href="{{ path('front_page_article', { 'slug': article.slug }) }}" aria-label="{{ 'article.button.more'|trans }}" role="button">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr class="pt-3 mt-3 color_bluesky">        
+        {% endfor %}       
+    {% endfor %}
+{% endblock %}

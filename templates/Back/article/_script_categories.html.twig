@@ -1,0 +1,50 @@
+{% trans_default_domain 'back_messages' %}
+    
+<script type="text/javascript">
+    $( document ).ready( function () {
+        $('#number_of_category_selected').html($('#category_list input[type="checkbox"]:checked').length);
+        var displaySelectedCategories = function () {
+            var ul = $('<ul class="list-unstyled"></ul>');
+            $('#category_list input[type="checkbox"]:checked').each(function (i, input) {
+                if ("" != $( 'label[for="' + $(input).attr('id') + '"]').text()) {
+                    ul.append( '<li>' + $( 'label[for="' + $(input).attr('id') + '"]').text() + '</li>' );
+                }
+            });
+            $( '#categories_selected' ).html(ul.html());
+        };
+        displaySelectedCategories();
+        $('#categories_dropdown').on('show.bs.dropdown', function () {
+            $( '#categories_selected' ).html("");
+        });
+        $('#categories_dropdown').on('hidden.bs.dropdown', function () {
+            displaySelectedCategories();
+        });
+        $('#category_list').on('click', ':checkbox', function() {
+            $('#number_of_category_selected').html($('#category_list input[type="checkbox"]:checked').length);
+        });
+        $('#categories_filter').on('keyup', function () {
+            var filter = this.value.toUpperCase();
+            $('#category_list').find('label').each(function (i, label) {
+                if (filter == "" || label.innerText.toUpperCase().indexOf(filter) > -1) {
+                    $( '#item_' + $(label).attr('for') ).show();
+                    $($(label).parents('.form-group')[0]).show();
+                } else {
+                    $( '#item_' + $(label).attr('for') ).hide();
+                    $($(label).parents('.form-group')[0]).hide();
+                }
+            });
+        });
+        $("#select_all").change(function() {
+            if (this.checked) {
+                $( '#category_list input[type="checkbox"]' ).each(function() {
+                    this.checked=true;
+                });
+            } else {
+                $( '#category_list input[type="checkbox"]' ).each(function() {
+                    this.checked=false;
+                });
+            }
+            $('#number_of_category_selected').html($('#category_list input[type="checkbox"]:checked').length);
+        });
+    });
+</script>

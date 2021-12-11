@@ -1,0 +1,23 @@
+entities:
+    ArticleCategory:
+        class: App\Entity\ArticleCategory
+        prefix_directory: back
+        prefix_route: back
+        voter: false
+        fields:
+            - name
+        search:
+            pagination: true
+            multi_select: true
+            filter_view:
+                activate: true
+        create:
+            activate: true
+        read:
+            activate: false
+        update:
+            activate: true
+            multi_select: false
+        delete:
+            activate: true
+            multi_select: true

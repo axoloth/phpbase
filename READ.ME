@@ -1,0 +1,315 @@
+Référence : https://dev-fusion.com/2019/11/01/symfony-creer-rapidement-un-projet-de-base-complet-avec-un-espace-utilisateur.html
+
+composer create-project symfony/website-skeleton phpbase
+Modif .env pour Mysql accès
+php bin/console doctrine:database:create
+php bin/console make:user
+
+php bin/console make:auth
+    >1
+    >LoginFormAuthenticator
+    >SecurityController
+    >yes
+
+php bin/console make:registration-form
+    >no
+
+
+composer require symfonycasts/verify-email-bundle
+
+composer require symfony/webpack-encore-bundle
+yarn add node-sass sass-loader bootstrap @fortawesome/fontawesome-free @fortawesome/free-brands-svg-icons jquery popper.js --dev
+
+Supprimer le fichier app.js dans le dossier assets/js/ et ajouter les deux fichiers suivants :
+
+----
+// assets/js/front_app.js
+
+// css
+
+import '../css/front_app.scss';
+
+// js
+const $ = require('jquery');
+window.Popper = require('popper.js');
+global.$ = global.jQuery = $;
+require('bootstrap');
+
+--------
+---------
+
+// assets/js/back_app.js
+
+// css
+import '../css/back_app.scss';
+
+// js
+const $ = require('jquery');
+window.Popper = require('popper.js');
+global.$ = global.jQuery = $;
+require('bootstrap');
+-------
+
+// assets/css/front_app.scss
+
+// font awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    #flash_message {
+        width: 100%;
+        max-width: 320px;
+        background-color: transparent;
+        position: absolute;
+        right: 15PX;
+        top: 150px;
+        z-index: 999;
+    }
+}
+
+------------------
+// assets/css/back_app.scss
+
+// font awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+
+// global
+
+$base-font-size: 14px;
+$default-color: #ff8a00;
+$default-color-hover:#fe9e08;
+$default-color-auther:#111;
+$default-color-text: #777;
+
+
+body {
+
+    .navbar {
+        padding: 15px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-btn {
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed #ddd;
+        margin: 40px 0;
+    }
+
+    .btn {
+        border-radius: 0;
+    }
+
+    .btn-info {
+        background-color: $default-color;
+        border-color: $default-color;
+        &:hover{
+            background-color: $default-color-hover;
+            border-color: $default-color-hover;
+        }
+    }
+
+    .btn-primary {
+        background-color: $default-color;
+        border-color: $default-color;
+        &:hover{
+            background-color: $default-color-hover;
+            border-color: $default-color-hover;
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+        overflow: hidden;
+    }
+
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        background: $default-color-auther;
+        color: #fff;
+        transition: all 0.3s;
+    }
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: $default-color;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid $default-color;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: rem(14);
+        display: block;
+        color: #fff;
+    }
+
+    #sidebar ul li a:hover {
+        color: $default-color-auther;
+        background: #fff;
+        color: $default-color;
+    }
+
+    #sidebar ul li.active>a,
+    a[aria-expanded="true"] {
+        color: #fff;
+        background: $default-color;
+    }
+
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+
+    .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    ul ul a {
+        font-size: 0.9em !important;
+        padding-left: 30px !important;
+        background: $default-color;
+    }
+
+    a.article,
+    a.article:hover {
+        background: $default-color!important;
+        color: #fff !important;
+    }
+
+    #flash_message {
+        width: 100%;
+        max-width: 320px;
+        background-color: transparent;
+        position: absolute;
+        right: 15px;
+        top: 150px;
+        z-index: 999;
+    }
+}
+
+
+-------------
+Il faut également éditer le fichier webpack.config.js pour qu’il ressemble à celui-ci :
+
+
+var Encore = require('@symfony/webpack-encore');
+
+Encore
+    // directory where compiled assets will be stored
+    .setOutputPath('public/build/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/build')
+
+    .copyFiles({
+        from: 'assets/img',
+
+       // optional target path, relative to the output dir
+        to: 'images/[name].[hash:8].[ext]',
+
+        // if versioning is enabled, add the file hash too
+        //to: 'images/[path][name].[hash:8].[ext]',
+        // only copy files matching this pattern
+        pattern: /\.(png|jpg|jpeg)$/
+    })
+
+    /*
+     * ENTRY CONFIG
+     *
+     * Add 1 entry for each "page" of your app
+     * (including one that's included on every page - e.g. "app")
+     *
+     * Each entry will result in one JavaScript file (e.g. app.js)
+     * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
+     */
+    .addEntry('back_app', './assets/js/back_app.js')
+    .addEntry('front_app', './assets/js/front_app.js')
+
+    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+    .splitEntryChunks()
+
+    // will require an extra script tag for runtime.js
+    // but, you probably want this, unless you're building a single-page app
+    .enableSingleRuntimeChunk()
+
+    /*
+     * FEATURE CONFIG
+     *
+     * Enable & configure other features below. For a full
+     * list of features, see:
+     * https://symfony.com/doc/current/frontend.html#adding-more-features
+     */
+    .cleanupOutputBeforeBuild()
+    .enableBuildNotifications()
+    .enableSourceMaps(!Encore.isProduction())
+    // enables hashed filenames (e.g. app.abc123.css)
+    .enableVersioning(Encore.isProduction())
+
+    // enables Sass/SCSS support
+    .enableSassLoader()
+
+    // uncomment if you're having problems with a jQuery plugin
+    .autoProvidejQuery()
+;
+
+module.exports = Encore.getWebpackConfig();
+
+--------------
+// npm install popper.js --save
+npm install @popperjs/core --save
+
+yarn add file-loader@^6.0.0 --dev
+yarn encore dev
+
+
+-------
+Modif entity User
+php bin/console doctrine:schema:update --force
+
+
+composer require symfony/templating
+
+composer require symfony/translation
+
+composer require symfony/security-csrf

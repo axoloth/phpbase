@@ -1,0 +1,284 @@
+action:
+    delete: Delete
+    permute_enabled: 'Enable / Disable'
+    update: Update
+article:
+    button:
+        update_image: Update image
+        crop_image: Crop image
+    create:
+        categories_selected: Categories selected
+        flash:
+            success: 'Article created (%identifier%).'
+        h1: 'Create - Article'
+        h2: 'Create form'
+        title: 'Create - Article'
+    delete:
+        flash:
+            success: 'Article(s) deleted.'
+        h1: 'Delete - Article'
+        h2: 'The following list will be deleted'
+        modal_title: 'Delete - Article'
+    field:
+        author: Author
+        content: Content
+        created_at: 'Created At'
+        description: Description
+        title: Title
+        updated_at: 'Updated At'
+    label:
+        content: Content
+        description: Description
+        title: Title
+        categories: Categories
+    category_order:
+        flash:
+            success: 'Categories ordered.'
+            less_than_two_subcategory: There are less than two categories
+        h1: 'Order - Catégorie'
+        h2: 'Position the categories in the desired order'
+        title: 'Order - Catégory'
+    read:
+        h1: 'Details - Article'
+        h2: Details
+        title: 'Details - Article'
+    search:
+        h1: 'Search - Article'
+        h2: Search
+        title: 'Search - Article'
+    update:
+        flash:
+            success: 'Article updated.'
+        h1: 'Update - Article'
+        h2: 'Update form'
+        title: 'Update - Article'
+article_category:
+    create:
+        articles_selected: Articles selected
+        flash:
+            success: 'Article category created (%identifier%).'
+        h1: 'Create - Article category'
+        h2: 'Create form'
+        title: 'Create - Article category'
+    delete:
+        flash:
+            success: 'Article category(s) deleted.'
+        h1: 'Delete - Article category'
+        h2: 'The following list will be deleted'
+        modal_title: 'Delete - Article category'
+    field:
+        articles: Articles
+        displayed_home: Displayed in home page
+        displayed_menu: Displayed in menu
+        slug: Slug
+        parent_category: Parent category
+    label:
+        filter_parent_category: Filter
+        parent_category: Parent category
+        displayed_home: Displayed in home page
+        displayed_menu: Displayed in menu
+        name: Name
+        slug: Slug
+        articles: Articles
+    search:
+        h1: 'Search - Article category'
+        h2: Search
+        title: 'Search - Article category'
+    order:
+        flash:
+            success: 'Categories ordered.'
+            less_than_two_subcategory: There are less than two categories
+        h1: 'Order - Catégorie'
+        h2: 'Position the categories in the desired order'
+        title: 'Order - Catégory'
+    article_order:
+        flash:
+            success: 'Articles ordered.'
+            less_than_two_subcategory: There are less than two articles
+        h1: 'Order - Article'
+        h2: 'Position the articles in the desired order'
+        title: 'Order - Article'
+    update:
+        flash:
+            success: 'Article category updated.'
+        h1: 'Update - Article category'
+        h2: 'Update form'
+        title: 'Update - Article category'
+button:
+    back: Back
+    cancel: Cancel
+    create: Add
+    delete: Delete
+    delete_title: Delete
+    disable: Disable
+    enable: Enable
+    filter: Filter
+    next: Next
+    previous: Previous
+    read_title: Details
+    submit: Submit
+    switch: Switch
+    update_title: Update
+    validate: Validate
+    up: Up
+    down: Down
+    order: Order
+config:
+    create:
+        flash:
+            success: 'Config created (%identifier%).'
+        h1: 'Create - Config'
+        h2: 'Create form'
+        title: 'Create - Config'
+    delete:
+        flash:
+            success: 'Config deleted.'
+        h1: 'Delete - Config'
+        h2: 'The following list will be deleted'
+        modal_title: 'Delete - Config'
+    field:
+        name: Name
+        type: Type
+        value: Value
+    label:
+        name: name
+        type: Type
+        value: Value
+    read:
+        h1: 'Details - Config'
+        h2: Details
+        title: 'Details - Config'
+    search:
+        h1: 'Search - Config'
+        h2: Search
+        title: 'Search - Config'
+    update:
+        flash:
+            success: 'Config updated.'
+        h1: 'Update - Config'
+        h2: 'Update form'
+        title: 'Update - Config'
+contact_message:
+    create:
+        flash:
+            success: 'Contact message created (%identifier%).'
+        h1: 'Create - Contact message'
+        h2: 'Create form'
+        title: 'Create - Contact message'
+    delete:
+        flash:
+            success: 'Contact message(s) deleted.'
+        h1: 'Delete - Contact message'
+        h2: 'The following list will be deleted'
+        modal_title: 'Delete - Contact message'
+    field:
+        created_at: 'Created At'
+        email: Email
+        firstname: Firstname
+        lastname: Lastname
+        message: Message
+        subject: Subject
+    read:
+        h1: 'Details - Contact message'
+        h2: Details
+        title: 'Details - Contact message'
+    search:
+        h1: 'Search - Contact message'
+        h2: Search
+        title: 'Search - Contact message'
+delete:
+    confirm: 'Confirmation of deletion'
+    warning: 'The deletion will be final.'
+error:
+    no_element_selected: 'No element selected'
+invitation:
+    account: Account
+    account_login: Login
+    account_logout: Logout
+    account_profile: 'My profile'
+    account_reset_password: 'Reset password'
+    email:
+        action: Validate
+        message: "Hello %user%,\n\nYou have been invited to join us. \n\nEmail : %email%\nPassword : %password%\n\nTo finish activating your account - please click on the following link.\n\nThis link can only be used once to validate your account.\n"
+        subject: '🔔 Invitation'
+    end_switch: 'End switch'
+    home: 'Home Front'
+label:
+    filter_number_by_page: 'Number by page'
+    filter_search: Search
+'no': 'No'
+search:
+    action_th: Action(s)
+    no_data_found: 'No data found'
+sidebar:
+    article: Article
+    article_create: 'Add'
+    article_search: 'List'
+    article_category_create: 'Add category'
+    article_category_search: 'List categories'
+    config: Config
+    contact_message: 'Contact form'
+    home: 'Home Back'
+    user: User
+    user_create: Invite
+    user_search: List
+user:
+    button:
+        create: Invite
+    create:
+        flash:
+            success: 'User (%identifier%) has been invite.'
+        h1: 'Invite - User'
+        h2: 'Invitation to user'
+        title: 'Invite - User'
+    delete:
+        flash:
+            success: 'User(s) deleted.'
+        h1: 'Delete - User'
+        h2: 'The following list will be deleted'
+        modal_title: 'Delete - User'
+    error:
+        cannot_delete_super_admin: 'A super admin cannot be deleted.'
+        cannot_permute_enabled_super_admin: 'A super admin cannot be enabled or disabled.'
+    field:
+        created_at: 'Created At'
+        email: Email
+        enabled: Enabled
+        firstname: Firstname
+        last_login_at: 'Last Login At'
+        lastname: Lastname
+        roles: Roles
+        updated_at: 'Updated At'
+    label:
+        email: Email
+        firstname: Firstname
+        lastname: Lastname
+        roles: Roles
+    read:
+        h1: 'Details - User'
+        h2: Details
+        title: 'Details - User'
+    search:
+        h1: 'Search - User'
+        h2: Search
+        title: 'Search - User'
+    update:
+        flash:
+            success: 'User updated.'
+        h1: 'Update - User'
+        h2: 'Update form'
+        title: 'Update - User'
+'yes': 'Yes'
+article_image:
+    crop:
+        flash:
+            success: Congratulations, your image has been properly cropped.
+        h1: Crop the image
+        h2: Crop the image so that it is displayed correctly 
+        title: Crop the image
+    update:
+        flash:
+            success: Congratulations, you have successfully added the image. All you have to do is crop it.
+        title: Add an image to the article 
+        h1: Add an image to the article 
+        h2: This image will be displayed above the article 

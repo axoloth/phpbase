@@ -1,0 +1,60 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}{{ 'article.update.title'|trans() }}{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="h3">{{ 'article.update.h1'|trans() }}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>
+                        <a href="{{ path('back_article_search') }}" class="btn btn-primary" role="button">
+                            <i class="fas fa-reply"></i> {{ 'button.back'|trans() }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ 'article.update.h2'|trans() }}</h2>
+                    <div class="card-content p-2 mb-4">
+                        {{ form_start(form) }}
+                            {{ form_row(form.title) }}
+                            {{ form_row(form.description) }}
+                            {{ form_row(form.content) }}
+                            <div id="categories_dropdown" class="dropdown">
+                                <button class="btn bg-white text-primary dropdown-toggle btn-block button" type="button" id="categories_dropdown_menu_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ form_label(form.categories) }}
+                                </button>
+                                <p>{{ 'article.create.categories_selected'|trans }} : <span id="number_of_category_selected"></span></p>
+                                <div id="categories_selected"></div>
+                                <div class="dropdown-menu pr-2 pl-2" aria-labelledby="categories_dropdown_menu_button">
+                                    <input class="form-control" type="text" placeholder="{{ 'label.filter_search'|trans }}" id="categories_filter" />
+                                    <div class="form-check pl-0"><input type="checkbox" id="select_all"/></div>
+                                    <div id="category_list">
+                                        {% for child in form.categories %}
+                                            <p id="{{ 'item_' ~ child.vars.id }}" class="dropdown-item">{{ form_row(child) }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block">
+                                <i class="far fa-paper-plane"></i> {{ 'button.submit'|trans() }}
+                            </button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('back/article/_script_categories.html.twig') }}    
+{% endblock %}

@@ -1,0 +1,45 @@
+{% trans_default_domain 'front_messages' %}
+{% extends "front/layout.html.twig" %}
+
+{% block title %}
+    {{ 'contact_message.create.title'|trans() }}
+{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="h3">{{ 'contact_message.create.h1'|trans() }}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                </div>
+            </div>
+            <hr>
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ 'contact_message.create.h2'|trans() }}</h2>
+                    <div class="p-4 border border-light">
+                        {{ form_start(form, { attr: { 'id': 'form_contact' }}) }}
+                        {{ form_errors(form) }}
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.subject) }}
+                        {{ form_row(form.message) }}
+                        {% if form.submit is defined %}
+                            {{ form_row(form.submit) }}
+                        {% else %}
+                            <button class="btn btn-info btn-block">
+                                <i class="far fa-paper-plane"></i>
+                                Envoyer
+                            </button>
+                        {% endif %}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

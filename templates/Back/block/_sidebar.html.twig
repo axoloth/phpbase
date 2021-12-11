@@ -1,0 +1,93 @@
+{% trans_default_domain 'back_messages' %}
+{% set route = app.request.get('_route') %}
+
+<!-- Sidebar  -->
+<div>
+    <button id="btn_sidebar_show" class="btn btn-primary" aria-label="Open sidebar">
+        <i class="fas fa-2x fa-arrow-right"></i>
+    </button>
+</div>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <div class="row">
+            <div class="logo-sidebar col-8">
+                <img src="{#{{ asset("build/images/logo.png") }}#}" class="img-fluid" alt="Logo sidebar">
+            </div>
+            <div class="col-4">
+                <button id="btn_sidebar_hide" class="btn btn-outline-primary button btn-sm"
+                    aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="mx-auto">
+                <p class="text-center"><small>{{ "now"|format_date }}</small></p>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="icon-rounded text-center">
+                            <i class="fas fa-user fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <ul class="list-unstyled">
+                            <li>{{ app.user }}</li>
+                            <li>{{ app.user.email }}</li>
+                            {% for role in app.user.roles %}
+                                <li><small>{{ role }}</small></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="list-unstyled components">
+        <li class="{{ route == 'back_home' ? 'active' }}">
+            <a href="{{ path('back_home') }}">{{ 'sidebar.home'|trans }}</a>
+        </li>
+        <li class="{{ route in ['back_user_search', 'back_user_create'] ? 'active' }}">
+            <a href="#user_sub_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{ 'sidebar.user'|trans() }}</a>
+            <ul class="collapse list-unstyled" id="user_sub_menu">
+                
+                <li>
+                    <a href="{{ path('back_user_search') }}">{{ 'sidebar.user_search'|trans() }}</a>
+                </li>
+                
+                <li>
+                    <a href="{{ path('back_user_create') }}">{{ 'sidebar.user_create'|trans() }}</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="{{ route in ['back_user_search', 'back_user_create'] ? 'active' }}">
+            <a href="#article_sub_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{ 'sidebar.article'|trans() }}</a>
+            <ul class="collapse list-unstyled" id="article_sub_menu">
+                
+                <li>
+                    <a href="{{ path('back_article_search') }}">{{ 'sidebar.article_search'|trans() }}</a>
+                </li>
+                
+                <li>
+                    <a href="{{ path('back_article_create') }}">{{ 'sidebar.article_create'|trans() }}</a>
+                </li>
+                
+                <li>
+                    <a href="{{ path('back_article_category_search') }}">{{ 'sidebar.article_category_search'|trans() }}</a>
+                </li>
+                
+                <li>
+                    <a href="{{ path('back_article_category_create') }}">{{ 'sidebar.article_category_create'|trans() }}</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="{{ route == 'back_contact_message_search' ? 'active' }}">
+            <a href="{{ path('back_contact_message_search') }}">{{ 'sidebar.contact_message'|trans() }}</a>
+        </li>
+        <li class="{{ route == 'back_config_search' ? 'active' }}">
+            <a href="{{ path('back_config_search') }}">{{ 'sidebar.config'|trans() }}</a>
+        </li>
+    </ul>
+</nav>

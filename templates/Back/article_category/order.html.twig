@@ -1,0 +1,60 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}{{ 'article_category.order.title'|trans() }}{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="h3">{{ 'article_category.order.h1'|trans() }}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>
+                        <a href="{{ path('back_article_category_search') }}" class="btn btn-primary" role="button">
+                            <i class="fas fa-reply"></i> {{ 'button.back'|trans() }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ 'article_category.order.h2'|trans() }}</h2>
+                    <div class="card-content p-2 mb-4">
+                        {% form_theme form 'form/jquery.collection.html.twig' %}
+                        {{ form_start(form) }}
+                            {{ form_errors(form.categories) }}
+                            {{ form_row(form.categories) }}
+                            <button class="btn btn-primary btn-block">
+                                <i class="far fa-paper-plane"></i> {{ 'button.submit'|trans() }}
+                            </button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/jquery.collection.js') }}"></script>
+    <script type="text/javascript">
+        $('.collection-selector').collection({
+            position_field_selector: '.position',
+            // init_with_n_elements: 1,
+            // min: 1,
+            add_at_the_end: false,
+            allow_add: false,
+            allow_remove: false,
+            allow_down: true,
+            allow_up: true,
+            // add: '<a href="#" class="btn bg-white text-primary button" title="{{ 'button.add'|trans() }}" role="button"><i class="fas fa-plus"></i></a>',
+            // remove: '<a href="#" class="btn bg-white text-primary button" title="{{ 'button.remove'|trans() }}" role="button"><i class="fas fa-trash"></i></a>',
+            up: '<a href="#" class="btn bg-white text-primary button" title="{{ 'button.up'|trans() }}" role="button"><i class="fas fa-arrow-up"></i></a>',
+            down: '<a href="#" class="btn bg-white text-primary button" title="{{ 'button.down'|trans() }}" role="button"><i class="fas fa-arrow-down"></i></a>',
+        });
+    </script>
+{% endblock %}

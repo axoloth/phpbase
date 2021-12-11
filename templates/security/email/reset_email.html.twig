@@ -1,0 +1,8 @@
+{% extends "@email/default/notification/body.html.twig" %}
+
+{% block content %}
+    {{ 'reset_email.email.message'|trans({
+            '%user%': user,
+        }, 'security')|raw|nl2br
+    }}
+{% endblock %}

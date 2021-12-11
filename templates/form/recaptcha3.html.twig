@@ -1,0 +1,13 @@
+{% block recaptcha3_widget -%}
+    {{- block('submit_widget') -}}
+    {{- block('recaptcha3_javascript') -}}
+{%- endblock %}
+
+{% block recaptcha3_javascript %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("{{ id }}").closest("form").submit();
+        }
+    </script>
+{% endblock %}

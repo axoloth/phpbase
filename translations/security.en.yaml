@@ -1,0 +1,93 @@
+reset_email:
+    title: Update email
+    h1: Update email
+    btn:
+        submit: Send
+    email:
+        subject: '🔔 Reset email'
+        message: |
+            Hello %user%,
+
+            To confirm the update of your email - please click on the following link.
+        action: Update
+    flash:
+        check_email: |
+            An email has been sent to your new address.. It contains a link you must click to confirm your new address.
+            If you don't get an email check your spam folder or try again.
+        success: The email address has been changed.
+    label:
+        email: New email
+        password: Password
+        repeat_email: Repeat new email
+forget_password:
+    title: Forget password
+    h1: Forget password
+    btn:
+        submit: Send
+    email:
+        subject: '🔔 Reset Password'
+        message: |
+            Hello %user%,
+
+            To reset your password - please click on the following link. 
+        action: Reset
+    flash:
+        check_email: |
+            An email has been sent. It contains a link you must click to reset your password.
+            If you don't get an email check your spam folder or try again.
+    label:
+        email: Email
+login:
+    title: Log In
+    h1: Please sign in
+    link:
+        logout: Logout
+        forget_password: Mot de passe oublié ?
+        registration: Inscription
+    message:
+        welcome: Welcome %user%
+        logged_as: You are logged in as %user%
+        email_not_found: Email could not be found.
+        not_activated: This account is not activated.
+    label:
+        email: Email
+        password: Password
+        remember_me: Remember me
+    btn:
+        submit: Sign in
+registration:
+    title: Register
+    h1: Register
+    btn:
+        submit: Register
+    email:
+        subject: '🔔 Welcome %user%'
+        message: |
+            Hello %user%,
+
+            To finish activating your account - please click on the following link.
+
+            This link can only be used once to validate your account.
+        action: Finish activating 
+    flash:
+        check_email: |
+            An email has been sent to %email%. It contains an activation link you must click to activate your account.
+        confirmed: 'Congrats %user%, your account is now activated.'
+    label:
+        email: Email
+        firstname: Prénom
+        lastname: Nom
+        password: Password
+        repeat_password: Repeat password
+        agree_terms: Agree terms
+reset_password:
+    title: Reset password
+    h1: Reset password
+    btn:
+        submit: Reset
+    flash:
+        success: The password has been changed.
+    label:
+        current_password: Old password
+        new_password: New password
+        repeat_new_password: Repeat new password

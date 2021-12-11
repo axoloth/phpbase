@@ -1,0 +1,65 @@
+entities:
+    User:
+        class: App\Entity\User
+        prefix_directory: back # Le code sera ajouté dans un sous-dossier back
+        prefix_route: back # L'URI des routes seront préfixés par back/
+        voter: true # Un Voter sera généré pour contrôler l'accès aux actions du contrôleur
+        # Champs affichés par défaut
+        fields:    
+            - firstname
+            - lastname
+            - email
+            # Ajout d'un filtre twig join pour afficher tout les rôles de l'utilisateur s'il en a plusieurs.
+            - { property: roles, twig_filters: [ "join(', ')" ] }
+            - enabled
+            - lastLoginAt
+            - createdAt
+            - updatedAt
+        # Pour inviter un utilisateur, il faudra renseigner les champs suivants :
+        forms:
+            - firstname
+            - lastname
+            - email
+            # Un utilisateur peut avoir plusieurs rôles
+            - { property: roles, type: ChoiceType, 
+                type_options: {
+                    choices: { 'ROLE_USER_ADMIN': 'ROLE_USER_ADMIN', 'ROLE_ADMIN': 'ROLE_ADMIN' }
+                    expanded: true,
+                    multiple: true
+                }
+            }
+        search:
+            # La liste sera triée du plus récent mis à jour au plus ancien 
+            order:
+                - { by: entity.updatedAt, direction: DESC }
+            pagination: true
+            multi_select: true
+            filter_view:
+                activate: true
+                # Le filtre pourra rechercher dans les champs suivants :
+                str_fields:
+                    - firstname
+                    - lastname
+                    - email
+        create:
+            activate: true
+        read:
+            activate: true
+            # Des boutons de modification et de suppression seront ajoutés en haut à droite
+            action_up: true
+            action_down: false
+        update:
+            activate: true
+            multi_select: false
+            # Seulement les rôles peuvent être modifiés.
+            forms:
+                - { property: roles, type: ChoiceType,
+                    type_options: {
+                        choices: { 'ROLE_USER_ADMIN': 'ROLE_USER_ADMIN', 'ROLE_ADMIN': 'ROLE_ADMIN' }
+                        expanded: true,
+                        multiple: true
+                    }
+                }
+        delete:
+            activate: true
+            multi_select: true

@@ -1,0 +1,5 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_4_layout.html.twig', '/form/recaptcha3.html.twig']
+    paths:
+        '%kernel.project_dir%/templates/email': email

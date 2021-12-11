@@ -1,0 +1,27 @@
+{% extends "@email/default/notification/body.html.twig" %}
+{% trans_default_domain 'front_messages' %}
+{% block content %}
+    <h1>{{ 'contact_message.email.h1'|trans }}</h1>
+    <ul class="list-unstyled">
+        <li>
+            <strong>{{ 'contact_message.field.firstname'|trans() }}
+                :
+            </strong>
+            {{ contact_message.firstname }}
+        </li>
+        <li>
+            <strong>{{ 'contact_message.field.lastname'|trans() }}
+                :
+            </strong>
+            {{ contact_message.lastname }}
+        </li>
+        <li>
+            <strong>{{ 'contact_message.field.email'|trans() }}
+                :
+            </strong>
+            <a href="mailto:{{ contact_message.email }}">{{ contact_message.email }}</a>
+        </li>
+    </ul>
+    <h2>{{ 'contact_message.field.subject'|trans }} : {{ contact_message.subject }}</h2>
+    <p>{{ contact_message.message|nl2br }}</p>
+{% endblock %}

@@ -1,0 +1,97 @@
+entities:
+    Article:
+        class: App\Entity\Article
+        skeleton: scrud_bootstrap_4
+        prefix_directory: back
+        prefix_route: back
+        voter: false
+        fields:
+            -
+                property: title
+                type: string
+                label_key_trans: title
+                label: Title
+                twig_filters: null
+            -
+                property: description
+                type: string
+                label_key_trans: description
+                label: Description
+                twig_filters: [nl2br]
+            -
+                property: content
+                type: text
+                label_key_trans: content
+                label: Content
+                twig_filters: null
+            -
+                property: createdAt
+                type: datetime
+                label_key_trans: created_at
+                label: 'Created At'
+                twig_filters: [format_datetime]
+            -
+                property: updatedAt
+                type: datetime
+                label_key_trans: updated_at
+                label: 'Updated At'
+                twig_filters: [format_datetime]
+        forms:
+            -
+                property: title
+                type: TextType
+                type_options: null
+                type_class: Symfony\Component\Form\Extension\Core\Type\TextType
+                label_key_trans: title
+                label: Title
+            -
+                property: description
+                type: TextType
+                type_options: null
+                type_class: Symfony\Component\Form\Extension\Core\Type\TextType
+                label_key_trans: description
+                label: Description
+            -
+                property: content
+                type: TextareaType
+                type_options: null
+                type_class: Symfony\Component\Form\Extension\Core\Type\TextareaType
+                label_key_trans: content
+                label: Content
+        search:
+            pagination: true
+            multi_select: true
+            filter_view:
+                activate: true
+                str_fields: [title, description]
+            fields:
+                - { property: title, type: string, label_key_trans: title, label: Title, twig_filters: null }
+                - { property: description, type: string, label_key_trans: description, label: Description, twig_filters: null }
+                - { property: updatedAt, type: datetime, label_key_trans: updated_at, label: 'Updated At', twig_filters: [format_datetime] }
+            dql_filter: ''
+            order:
+                - { by: entity.updatedAt, direction: DESC }
+            action:
+                activate: true
+                position: right
+        create:
+            activate: true
+            forms: {  }
+        read:
+            activate: true
+            fields:
+                - { property: title, type: string, label_key_trans: title, label: Title, twig_filters: null }
+                - { property: description, type: string, label_key_trans: description, label: Description, twig_filters: null }
+                - { property: content, type: text, label_key_trans: content, label: Content, twig_filters: [nl2br] }
+                - { property: createdAt, type: datetime, label_key_trans: created_at, label: 'Created At', twig_filters: [format_datetime] }
+                - { property: updatedAt, type: datetime, label_key_trans: updated_at, label: 'Updated At', twig_filters: [format_datetime] }
+            action_up: true
+            action_down: false
+        update:
+            activate: true
+            multi_select: false
+            form_type: Type
+            forms: {  }
+        delete:
+            activate: true
+            multi_select: true

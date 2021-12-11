@@ -1,0 +1,87 @@
+{% trans_default_domain 'back_messages' %}
+
+{% set col_count = 3 %}
+
+{% if can_multi_select %}
+    {{ form_start(form_batch) }}
+    {{ form_errors(form_batch) }}
+{% endif %}
+<div class="card mt-4 mb-4">
+    <div class="card-body">
+        <h2 class="card-title">{{ 'config.search.h2'|trans() }}</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        {% if can_multi_select %}
+                            {% set col_count = col_count + 1 %}
+                            <th><div class="form-check pl-0"><input type="checkbox" id="select_all" /></div></th>
+                        {% endif %}
+                        <th>{{ 'search.action_th'|trans() }}</th>
+                        <th>{{ 'config.field.name'|trans() }}</th>
+                        <th>{{ 'config.field.type'|trans() }}</th>
+                        <th>{{ 'config.field.value'|trans() }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for child in form_batch.configs %}
+                    {% set config = form_batch.configs.vars.choices[child.vars.value].data %}
+                    <tr>
+                        {% if can_multi_select %}
+                            <td>
+                                {{ form_row(child, { 'attr': { 'class': 'select'}}) }}
+                            </td>
+                        {% endif %}
+                        <td>
+                            {% if can_read %}
+                                <a href="{{ path('back_config_read', {'id': config.id}) }}" title="{{ 'button.read_title'|trans() }}"
+                                    class="btn bg-white text-primary button" aria-label="{{ 'button.read_title'|trans() }}" role="button">
+                                    <i class="fas fa-file-alt"></i>
+                                </a>
+                            {% endif %}
+                            {% if can_update %}
+                                <a href="{{ path('back_config_update', {'id': config.id}) }}" title="{{ 'button.update_title'|trans() }}"
+                                    class="btn bg-white text-warning button" aria-label="{{ 'button.update_title'|trans() }}" role="button">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            {% endif %}
+                            {% if can_delete %}
+                                <a href="#" class="btn bg-white text-danger btn-delete button" data-toggle="modal" data-target="#delete"
+                                    data-title="{{ config }}" role="button"
+                                    data-path="{{ path('back_config_delete', { 'ids': {0: config.id}}) }}"
+                                    title="{{ 'button.delete_title'|trans() }}" aria-label="{{ 'button.delete_title'|trans() }}">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>{{ config.name }}</td>
+                        <td>{{ config.type ~ ' / ' ~ config.realType }}</td>
+                        <td><pre>{{ config.display }}</pre></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="{{ col_count }}">{{ 'search.no_data_found'|trans() }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if can_multi_select %}
+    <div class="card p-2 mt-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9 col-lg-9">
+                    {{ form_row(form_batch.action) }}
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <div class="text-center">
+                        <button id="submit" class="btn bg-white text-primary btn-block button">{{ 'button.validate'|trans() }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form_batch) }}
+{% endif %}

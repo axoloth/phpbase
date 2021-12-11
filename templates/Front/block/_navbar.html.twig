@@ -1,0 +1,114 @@
+{% trans_default_domain 'front_messages' %}
+{% set route = app.request.get('_route') %}
+<div class="container">
+    <nav id="main_navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DevFusion</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item{{ route == 'front_home' ? ' active' }}">
+                    <a class="nav-link" href="{{ path('front_home') }}">{{ 'nav.home'|trans() }}</a>
+                </li>
+                <li class="nav-item{{ route == 'front_home' ? ' active' }}">
+                    <a class="nav-link" href="{{ path('front_page_contact') }}">{{ 'nav.contact_us'|trans() }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/official-dev-fusion/dev-fusion-skeleton-user" target="_blank">Github</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown_lang"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    >
+                        {{ 'nav.lang'|trans() }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown_lang">
+                        <li class="dropdown-item{{ 'fr' == app.request.locale ? ' active' }}">
+                            <a href="{{ path('locale_update', { 
+                                'lang': 'fr',
+                                'route': app.request.attributes.get('_route'),
+                                'params': app.request.attributes.get('_route_params'),
+                                'query': app.request.query.all()
+                            }) }}">
+                                <span>{{ 'nav.lang_fr'|trans() }}</span>
+                            </a>
+                        </li>
+                        <li class="dropdown-item{{ 'en' == app.request.locale ? ' active' }}">
+                            <a href="{{ path('locale_update', { 
+                                'lang': 'en',
+                                'route': app.request.attributes.get('_route'),
+                                'params': app.request.attributes.get('_route_params'),
+                                'query': app.request.query.all()
+                            }) }}">
+                                <span>{{ 'nav.lang_en'|trans() }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% for category in menu_categories %}
+                    {% include 'front/block/_navbar_category.html.twig' with { 'category': category } %}
+                {% endfor %}
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown_account" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        >
+                            <i class="fas fa-user"></i> {{ 'nav.account'|trans() }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown_account">
+                            {% if is_granted("ROLE_BACK") %}
+                                <li class="dropdown-item">
+                                    <a href="{{ path('back_home') }}">
+                                        <i class="fas fa-user-cog"></i> {{ 'nav.account_back'|trans() }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="dropdown-item">
+                                    <a href="#">
+                                        <i class="fas fa-user-cog"></i> {{ 'nav.account_profile'|trans() }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li class="dropdown-item{{ route == 'app_reset_password' ? ' active' }}">
+                                <a href="{{ path('app_reset_password', { 'id': app.user.id }) }}">
+                                    <i class="fas fa-"></i> {{ 'nav.account_reset_password'|trans() }}
+                                </a>
+                            </li>
+                            <li class="dropdown-item{{ route == 'app_reset_email' ? ' active' }}">
+                                <a href="{{ path('app_reset_email') }}">
+                                    <i class="fas fa-"></i> {{ 'nav.account_reset_email'|trans() }}
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{{ path('app_logout') }}">
+                                    <i class="fas fa-sign-out-alt"></i> {{ 'nav.account_logout'|trans() }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown_account" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        >
+                            <i class="fas fa-user"></i> {{ 'nav.account'|trans() }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown_account">
+                            <li class="dropdown-item{{ route == 'app_login' ? ' active' }}">
+                                <a href="{{ path('app_login') }}">
+                                    <i class="fas fa-sign-in-alt"></i> {{ 'nav.account_login'|trans() }}
+                                </a>
+                            </li>
+                            <li class="dropdown-item{{ route == 'front_register' ? ' active' }}">
+                                <a href="{{ path('front_register') }}">
+                                    <i class="fas fa-user"></i> {{ 'nav.account_register'|trans() }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>

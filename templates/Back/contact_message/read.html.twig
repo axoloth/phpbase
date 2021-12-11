@@ -1,0 +1,71 @@
+{% trans_default_domain 'back_messages' %}
+{% extends "back/layout.html.twig" %}
+
+{% block title %}
+    {{ 'contact_message.read.title'|trans() }}
+{% endblock %}
+
+{% block content %}
+    <section class="pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="h3">{{ 'contact_message.read.h1'|trans({ '%identifier%': contact_message }) }}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>
+                        <a href="{{ path('back_contact_message_search') }}" class="btn btn-primary" role="button">
+                            <i class="fas fa-reply"></i>
+                            {{ 'button.back'|trans() }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ 'contact_message.read.h2'|trans() }}</h2>
+                    <div class="card-content">
+                        <ul class="list-unstyled">
+                            <li class="p-2 mb-2">
+                                <strong>{{ 'contact_message.field.firstname'|trans() }}
+                                    :
+                                </strong>
+                                {{ contact_message.firstname }}
+                            </li>
+                            <li class="p-2 mb-2">
+                                <strong>{{ 'contact_message.field.lastname'|trans() }}
+                                    :
+                                </strong>
+                                {{ contact_message.lastname }}
+                            </li>
+                            <li class="p-2 mb-2">
+                                <strong>{{ 'contact_message.field.email'|trans() }}
+                                    :
+                                </strong>
+                                <a href="mailto:{{ contact_message.email }}">{{ contact_message.email }}</a>
+                            </li>
+                            <li class="p-2 mb-2">
+                                <strong>{{ 'contact_message.field.created_at'|trans() }}
+                                    :
+                                </strong>
+                                {{ contact_message.createdAt ? contact_message.createdAt|format_datetime : '' }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Objet : {{ contact_message.subject }}</h5>
+                    <p class="card-text">{{ contact_message.message|nl2br }}</p>
+                    <a href="mailto:{{ contact_message.email }}" class="card-link">Répondre</a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+{% endblock %}
